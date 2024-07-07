@@ -1,7 +1,7 @@
 # Личный проект «Readme»
 
 * Студент: [Pavel Bologan](https://up.htmlacademy.ru/nodejs-2/7/user/2096115).
-* Наставник: `Неизвестно`.
+* Наставник: [Владислав Поклонский](https://htmlacademy.ru/profile/id2210683).
 
 ---
 
