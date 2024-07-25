@@ -18,6 +18,7 @@
       "@project/authentication": ["libs/authentication/src/index.ts"],
       "@project/core": ["libs/shared/core/src/index.ts"],
       "@project/data-access": ["libs/shared/data-access/src/index.ts"],
+      "@project/post": ["libs/post/src/index.ts"],
       "@project/user": ["libs/user/src/index.ts"]
     }
   },

@@ -49,7 +49,7 @@ export class AuthenticationService {
   public async getUser(id: string) {
     const user = await this.userRepository.findById(id);
 
-    if (! user) {
+    if (!user) {
       throw new NotFoundException(AUTH_USER_NOT_FOUND);
     }
 

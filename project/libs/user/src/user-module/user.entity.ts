@@ -1,7 +1,6 @@
 import { compare, genSalt, hash } from 'bcrypt';
 import { AuthUser, Entity, StorableEntity } from '@project/core';
 
-
 export class UserEntity extends Entity implements StorableEntity<AuthUser> {
   public email: string;
   public firstName: string;

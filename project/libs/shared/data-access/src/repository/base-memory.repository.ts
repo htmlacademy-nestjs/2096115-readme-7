@@ -6,7 +6,17 @@ import { Repository } from 'libs/shared/data-access/src/repository/repository.in
 export abstract class BaseMemoryRepository<T extends Entity & StorableEntity<ReturnType<T['toPOJO']>>> implements Repository<T> {
   protected entities: Map<T['id'], ReturnType<T['toPOJO']>> = new Map();
 
-  constructor(protected entityFactory: EntityFactory<T>) {}
+  protected constructor(
+    protected entityFactory: EntityFactory<T>
+  ) {}
+
+  public async getAll(): Promise<T[]> {
+    let values: T[] = [];
+    this.entities.forEach(value => {
+      values.push(this.entityFactory.create(value));
+    });
+    return values;
+  }
 
   public async findById(id: T['id']): Promise<T> {
     const foundEntity = this.entities.get(id) || null;
