@@ -2,7 +2,7 @@ import { PhotoPost } from '@project/core';
 import { PostEntity } from './post.entity';
 
 export class PhotoPostEntity extends PostEntity {
-  public photo: File;
+  public photo: Blob;
 
   constructor({ photo, ...rest }: PhotoPost) {
     super(rest);

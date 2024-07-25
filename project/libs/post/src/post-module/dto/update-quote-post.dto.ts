@@ -1,3 +1,4 @@
+import { ApiProperty } from '@nestjs/swagger';
 import { PostDto } from './post.dto';
 import { QuotePostEntity } from 'libs/post/src/post-module/entities/quote-post.entity';
 import { Like } from 'libs/shared/core/src/lib/types/post/like.interface';
@@ -5,18 +6,51 @@ import { Comment } from 'libs/shared/core/src/lib/types/post/comment.interface';
 import { PostState } from 'libs/shared/core/src/lib/types/post/post-state.enum';
 
 export class UpdateQuotePostDto extends PostDto<QuotePostEntity> {
+  @ApiProperty()
+  public id: string;
+
+  @ApiProperty()
+  public userId: string;
+
+  @ApiProperty()
+  public originalPostId: string;
+
+  @ApiProperty()
+  public creationDate: number;
+
+  @ApiProperty()
+  public publicationDate: number;
+
+  @ApiProperty()
+  public isRepost: boolean;
+
+  @ApiProperty()
+  public likes: Like[];
+
+  @ApiProperty()
+  public comments: Comment[];
+
+  @ApiProperty()
+  public state: PostState;
+
+  @ApiProperty()
+  public text: string;
+
+  @ApiProperty()
+  public author: string;
+
   constructor(
-    public id: string,
-    public userId: string,
-    public originalPostId: string,
-    public creationDate: number,
-    public publicationDate: number,
-    public isRepost: boolean,
-    public likes: Like[],
-    public comments: Comment[],
-    public state: PostState,
-    public text: string,
-    public author: string,
+    id: string,
+    userId: string,
+    originalPostId: string,
+    creationDate: number,
+    publicationDate: number,
+    isRepost: boolean,
+    likes: Like[],
+    comments: Comment[],
+    state: PostState,
+    text: string,
+    author: string,
   ) {
     super({
       id,
@@ -29,6 +63,8 @@ export class UpdateQuotePostDto extends PostDto<QuotePostEntity> {
       comments,
       state,
     });
+    this.text = text;
+    this.author = author;
   }
 
   public toStorableEntity(): QuotePostEntity {
