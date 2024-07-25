@@ -24,12 +24,39 @@ export class PhotoPostController extends BasePostController<PhotoPostEntity> {
 
   @Post('/')
   public async create(@Body() dto: CreatePhotoPostDto): Promise<PhotoPost> {
-    return await super.save(dto);
+    const {
+      userId,
+      photo,
+    } = dto;
+    return await super.save(new CreatePhotoPostDto(userId, photo));
   }
 
   @Put('/')
   public async update(@Body() dto: UpdatePhotoPostDto): Promise<PhotoPost> {
-    return await super.update(dto);
+    const {
+      id,
+      userId,
+      originalPostId,
+      creationDate,
+      publicationDate,
+      isRepost,
+      likes,
+      comments,
+      state,
+      photo,
+    } = dto;
+    return await super.update(new UpdatePhotoPostDto(
+      id,
+      userId,
+      originalPostId,
+      creationDate,
+      publicationDate,
+      isRepost,
+      likes,
+      comments,
+      state,
+      photo,
+    ));
   }
 
   @Delete(':id')

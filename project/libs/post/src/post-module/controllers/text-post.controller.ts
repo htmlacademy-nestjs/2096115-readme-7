@@ -24,12 +24,45 @@ export class TextPostController extends BasePostController<TextPostEntity> {
 
   @Post('/')
   public async create(@Body() dto: CreateTextPostDto): Promise<TextPost> {
-    return await super.save(dto);
+    const {
+      userId,
+      title,
+      announcement,
+      text,
+    } = dto;
+    return await super.save(new CreateTextPostDto(userId, title, announcement, text));
   }
 
   @Put('/')
   public async update(@Body() dto: UpdateTextPostDto): Promise<TextPost> {
-    return await super.update(dto);
+    const {
+      id,
+      userId,
+      originalPostId,
+      creationDate,
+      publicationDate,
+      isRepost,
+      likes,
+      comments,
+      state,
+      title,
+      announcement,
+      text,
+    } = dto
+    return await super.update(new UpdateTextPostDto(
+      id,
+      userId,
+      originalPostId,
+      creationDate,
+      publicationDate,
+      isRepost,
+      likes,
+      comments,
+      state,
+      title,
+      announcement,
+      text,
+    ));
   }
 
   @Delete(':id')

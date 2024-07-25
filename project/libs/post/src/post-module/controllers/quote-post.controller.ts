@@ -24,12 +24,42 @@ export class QuotePostController extends BasePostController<QuotePostEntity> {
 
   @Post('/')
   public async create(@Body() dto: CreateQuotePostDto): Promise<QuotePost> {
-    return await super.save(dto);
+    const {
+      userId,
+      text,
+      author,
+    } = dto;
+    return await super.save(new CreateQuotePostDto(userId, text, author));
   }
 
   @Put('/')
   public async update(@Body() dto: UpdateQuotePostDto): Promise<QuotePost> {
-    return await super.update(dto);
+    const {
+      id,
+      userId,
+      originalPostId,
+      creationDate,
+      publicationDate,
+      isRepost,
+      likes,
+      comments,
+      state,
+      text,
+      author,
+    } = dto;
+    return await super.update(new UpdateQuotePostDto(
+      id,
+      userId,
+      originalPostId,
+      creationDate,
+      publicationDate,
+      isRepost,
+      likes,
+      comments,
+      state,
+      text,
+      author,
+    ));
   }
 
   @Delete(':id')

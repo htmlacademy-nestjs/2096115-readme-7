@@ -24,12 +24,38 @@ export class VideoPostController extends BasePostController<VideoPostEntity> {
 
   @Post('/')
   public async create(@Body() dto: CreateVideoPostDto): Promise<VideoPost> {
-    return await super.save(dto);
+    const { userId, title, link,} = dto;
+    return await super.save(new CreateVideoPostDto(userId, title, link));
   }
 
   @Put('/')
   public async update(@Body() dto: UpdateVideoPostDto): Promise<VideoPost> {
-    return await super.update(dto);
+    const {
+      id,
+      userId,
+      originalPostId,
+      creationDate,
+      publicationDate,
+      isRepost,
+      likes,
+      comments,
+      state,
+      title,
+      link,
+    } = dto;
+    return await super.update(new UpdateVideoPostDto(
+      id,
+      userId,
+      originalPostId,
+      creationDate,
+      publicationDate,
+      isRepost,
+      likes,
+      comments,
+      state,
+      title,
+      link,
+    ));
   }
 
   @Delete(':id')

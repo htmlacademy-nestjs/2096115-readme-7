@@ -24,12 +24,42 @@ export class LinkPostController extends BasePostController<LinkPostEntity> {
 
   @Post('/')
   public async create(@Body() dto: CreateLinkPostDto): Promise<LinkPost> {
-    return await super.save(dto);
+    const {
+      userId,
+      link,
+      description,
+    } = dto;
+    return await super.save(new CreateLinkPostDto(userId, link, description));
   }
 
   @Put('/')
   public async update(@Body() dto: UpdateLinkPostDto): Promise<LinkPost> {
-    return await super.update(dto);
+    const {
+      id,
+      userId,
+      originalPostId,
+      creationDate,
+      publicationDate,
+      isRepost,
+      likes,
+      comments,
+      state,
+      link,
+      description,
+    } = dto;
+    return await super.update(new UpdateLinkPostDto(
+      id,
+      userId,
+      originalPostId,
+      creationDate,
+      publicationDate,
+      isRepost,
+      likes,
+      comments,
+      state,
+      link,
+      description,
+    ));
   }
 
   @Delete(':id')
